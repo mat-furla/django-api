@@ -1,8 +1,8 @@
-from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import User
+from rest_framework import serializers
+from uuid import uuid4
 
-import uuid
+from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         if validated_data.get('password') == "":
-            validated_data['password'] = make_password(str(uuid.uuid4()))
+            validated_data['password'] = make_password(str(uuid4()))
         else:
             validated_data['password'] = make_password(
                 validated_data.get('password'))

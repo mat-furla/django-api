@@ -1,18 +1,64 @@
-python3 -m venv .venv
-source .venv/bin/activate.fish
+# Django
 
-pip install djangorestframework autopep8 pylint isort
+## Dependencies
 
-django-admin startproject django_api
-cd django_api/
-python3 manage.py startapp users
+```bash
+>> python3 -m venv .venv
+>> source .venv/bin/activate
+>> pip install -r requirements.txt
+```
 
-In settings.py
-add 'rest_framework', 'users'
+## Project creation
+```bash
+>> django-admin startproject django_api
+```
 
-python3 manage.py migrate # Initialize database
+## App creation
+```bash
+>> python manage.py startapp users
+>> python manage.py startapp export
+```
 
-python3 manage.py runserver # Run server
+## Migrations
+```bash
+>> python manage.py makemigrations
+>> python manage.py migrate
+```
 
-python3 manage.py makemigrations # after model creation
-python3 manage.py migrate
+## Start server
+```bash
+>> python manage.py runserver
+```
+
+## Routes
+### Admin
+```bash
+http://localhost:8000/admin
+```
+
+### Users - GET, POST
+```bash
+#GET - Return all users
+http://localhost:8000/users/
+
+#POST - Create new user
+http://localhost:8000/users/
+---
+{
+  "email": "test@teste.com",
+  "password": "",
+  "first_name": "first_name",
+  "last_name": "last_name",
+  "birth_date": "2021-11-25"
+}
+---
+
+#GET - Return user by id
+http://localhost:8000/users/<user_id>
+```
+
+### Export - GET
+```bash
+#GET - Export user database to xlsl
+http://localhost:8000/export/
+```

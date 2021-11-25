@@ -1,9 +1,8 @@
-from rest_framework.views import APIView
 from django.http import HttpResponse
+from openpyxl import Workbook
+from rest_framework.views import APIView
 
 from users.models import User
-from openpyxl import Workbook
-from datetime import datetime
 
 
 class ExportViews(APIView):
